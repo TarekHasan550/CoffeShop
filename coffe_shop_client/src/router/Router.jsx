@@ -20,7 +20,7 @@ export default function Router() {
           Component: Home
         },
         {
-          path: 'coffeDetails/:id',
+          path: 'coffeDetails',
           element: <CoffeDetails />,
         },
         {
@@ -28,8 +28,9 @@ export default function Router() {
           Component: NewCoffe
         },
         {
-          path: "updateCoffe/:id",
-          element: <UpdateCoffe />
+          path: "updateCoffe",
+          // loader: ({params})=> fetch(`${params.id}`),
+          Component: UpdateCoffe
         }
       ]
     }

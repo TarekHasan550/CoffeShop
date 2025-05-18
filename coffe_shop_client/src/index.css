@@ -8,4 +8,12 @@
 
 h1 {
   font-family: "Rancho", cursive;
+  color: #331A15;
+  font-size: 2vw;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px #000000dd;
+}
+
+p {
+  font-size: 0.9em;
 }
