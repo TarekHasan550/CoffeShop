@@ -6,6 +6,8 @@ import Home from '../pages/Home';
 import CoffeDetails from '../pages/CoffeDetails';
 import NewCoffe from '../pages/NewCoffe';
 import UpdateCoffe from '../pages/UpdateCoffeDetails';
+import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
 
 
 export default function Router() {
@@ -17,20 +19,30 @@ export default function Router() {
       children: [
         {
           index: true,
+          loader: () => fetch(`http://localhost:3000/coffes`),
           Component: Home
         },
         {
-          path: 'coffeDetails',
-          element: <CoffeDetails />,
+          path: 'coffeDetails/:id',
+          loader: ({ params }) => fetch(`http://localhost:3000/coffes/${params.id}`),
+          Component: CoffeDetails,
         },
         {
           path: "newCoffe",
           Component: NewCoffe
         },
         {
-          path: "updateCoffe",
-          // loader: ({params})=> fetch(`${params.id}`),
+          path: "updateCoffe/:id",
+          loader: ({ params }) => fetch(`http://localhost:3000/coffes/${params.id}`),
           Component: UpdateCoffe
+        },
+        {
+          path: "/login",
+          Component: Login
+        },
+        {
+          path: "/signup",
+          Component: SignUp
         }
       ]
     }

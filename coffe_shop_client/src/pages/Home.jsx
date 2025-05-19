@@ -1,11 +1,47 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 import { FaEye, FaPen } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsCupHotFill } from "react-icons/bs";
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 
 export default function Home() {
+  const initialCoffeData = useLoaderData();
+  const [coffeData, setCoffeData] = useState(initialCoffeData)
+  console.log(coffeData);
+
+  const handleDelete = (_id) => {
+    console.log(_id)
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/Coffes/${_id}`, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+        .then(data => console.log(data))
+
+        const remainingCoffe = coffeData.filter(coffe => coffe._id !== _id)
+        setCoffeData(remainingCoffe)
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }
   return (
     <>
       <div className="bg-[url('/more/3.png')] bg-cover bg-bottom bg-no-repeat h-[80vh] w-full text-white">
@@ -44,25 +80,29 @@ export default function Home() {
       <div className='flex flex-col justify-center items-center bg-[url("/more/1.png")] bg-cover bg-no-repeat mb-[5vw]'>
         <p className='font-semibold'>--- Sip & Savor ---</p>
         <h1 className='text-4xl font-semibold text-[#331A15} my-5'>Our Popular Products</h1>
-        <h1 className='btn btn-active btn-warning border-2 border-amber-950 !text-base mb-[6vh]'><Link to="newCoffe">Add Coffee</Link><BsCupHotFill /></h1>
+        <h1 className='btn btn-active btn-warning border-2 border-amber-950 !text-base mb-[6vh]'><Link to="/newCoffe">Add Coffee</Link><BsCupHotFill /></h1>
         <div className='flex flex-wrap gap-[1.2vw] justify-center items-center'>
-          {[1, 2, 3, 4, 5, 6].map((card, index) => {
+
+          {coffeData.map((coffe, index) => {
+            const {_id, Name, Chef, Supplier, Taste, Price, Details, Photo} = coffe;
+            console.log(coffe)
+
             return (
-              <div className="card card-side bg-[#F5F4F1] basis-1/4 ">
-                <figure className='p-[1vw]'>
-                  <img src="/1.png" alt="" />
+              <div className="card card-side bg-[#F5F4F1] basis-1/4 " key={index}>
+                <figure className='p-[1.5vw]'>
+                  <img src={Photo} alt="" />
                 </figure>
                 <div className="card-body pl-0 justify-center">
                   <div className='flex gap-4'>
                     <div className='flex flex-col justify-center w-[12vw]'>
-                      <h2 className=""><span className='font-bold'>Name: </span>Americano Coffee</h2>
-                      <h2 className=""><span className='font-bold'>Chef: </span>Mr. Matin Paul</h2>
-                      <h2 className=""><span className='font-bold'>Price: </span>890 Taka</h2>
+                      <h2 className=""><span className='font-bold'>Name: </span>{ Name}</h2>
+                      <h2 className=""><span className='font-bold'>Chef: </span>{Chef}</h2>
+                      <h2 className=""><span className='font-bold'>Price: </span>{Price}</h2>
                     </div>
                     <div className="grid gap-2">
-                      <Link to={"/coffeDetails"}><button className="btn bg-amber-300 text-lg text-white"><FaEye /></button></Link>
-                      <Link to='/updateCoffe'><button className="btn bg-gray-600 text-lg text-white"><FaPen /></button></Link>
-                      <button className="btn bg-red-400 text-lg text-white"><RiDeleteBin6Line /></button>
+                      <Link to={`/coffeDetails/${_id}`}><button className="btn bg-amber-300 text-lg text-white"><FaEye /></button></Link>
+                      <Link to={`/updateCoffe/${_id}`}><button className="btn bg-gray-600 text-lg text-white"><FaPen /></button></Link>
+                      <button onClick={() => handleDelete(_id)} className="btn bg-red-400 text-lg text-white"><RiDeleteBin6Line /></button>
                     </div>
                   </div>
                 </div>
