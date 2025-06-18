@@ -23,5 +23,4 @@ A responsive front-end management dashboard designed specifically for coffee sho
 - **Firebase (optional)** – For future use: hosting, auth, or database
 - **ESLint** – Code quality and consistency
 
-## 📁 Project Structure
 
