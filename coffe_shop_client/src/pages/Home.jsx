@@ -1,10 +1,9 @@
-import React from 'react'
-import { Link, useLoaderData } from 'react-router'
+import { useState } from 'react';
+import { BsCupHotFill } from "react-icons/bs";
 import { FaEye, FaPen } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { BsCupHotFill } from "react-icons/bs";
+import { Link, useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
-import { useState } from 'react';
 
 
 export default function Home() {
@@ -25,11 +24,11 @@ export default function Home() {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/Coffes/${_id}`, {
+        fetch(`https://coffe-shop-server-fawn.vercel.app/Coffes/${_id}`, {
           method: "DELETE"
         })
           .then(res => res.json())
-        .then(data => console.log(data))
+          .then(data => console.log(data))
 
         const remainingCoffe = coffeData.filter(coffe => coffe._id !== _id)
         setCoffeData(remainingCoffe)
@@ -84,7 +83,7 @@ export default function Home() {
         <div className='flex flex-wrap gap-[1.2vw] justify-center items-center'>
 
           {coffeData.map((coffe, index) => {
-            const {_id, Name, Chef, Supplier, Taste, Price, Details, Photo} = coffe;
+            const { _id, Name, Chef, Supplier, Taste, Price, Details, Photo } = coffe;
             console.log(coffe)
 
             return (
@@ -95,7 +94,7 @@ export default function Home() {
                 <div className="card-body pl-0 justify-center">
                   <div className='flex gap-4'>
                     <div className='flex flex-col justify-center w-[12vw]'>
-                      <h2 className=""><span className='font-bold'>Name: </span>{ Name}</h2>
+                      <h2 className=""><span className='font-bold'>Name: </span>{Name}</h2>
                       <h2 className=""><span className='font-bold'>Chef: </span>{Chef}</h2>
                       <h2 className=""><span className='font-bold'>Price: </span>{Price}</h2>
                     </div>

@@ -1,18 +1,17 @@
-import React from 'react'
-import { FaArrowLeft } from 'react-icons/fa'
-import { Link, useLoaderData } from 'react-router'
+import { FaArrowLeft } from 'react-icons/fa';
+import { Link, useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 
 export default function UpdateCoffeDetails() {
   const coffeDetails = useLoaderData();
-  const {_id, Name, Chef, Supplier, Taste, Price, Details, Photo } = coffeDetails;
+  const { _id, Name, Chef, Supplier, Taste, Price, Details, Photo } = coffeDetails;
   const handleUpdateCoffe = e => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const updateCoffe = Object.fromEntries(formData.entries());
 
-    fetch(`http://localhost:3000/coffes/${_id}`, {
+    fetch(`https://coffe-shop-server-fawn.vercel.app/coffes/${_id}`, {
       method: "PUT",
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(updateCoffe)

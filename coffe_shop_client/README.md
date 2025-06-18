@@ -1,12 +1,27 @@
-# React + Vite
+# ☕ Coffee Shop Management – Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive front-end management dashboard designed specifically for coffee shop owners and staff. The system simplifies daily operations like adding, editing, or removing coffee items, managing inventory, and monitoring key actions — all from a clean and intuitive interface.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔄 **Full CRUD operations** for coffee items (Create, Read, Update, Delete)
+- 📱 **Fully responsive UI** for desktop, tablet, and mobile
+- 🔐 **Firebase Integration** for future-ready authentication or hosting (if applicable)
+- 🎨 **Modern UI** built with **Tailwind CSS** and styled using **daisyUI**
+- 🔁 **Client-side routing** with **React Router v7**
+- 💬 **Interactive alerts** with **SweetAlert2**
+- 🌿 Clean, minimal design using **React 19+**, component-based structure
+- 📦 Easy to maintain and scale using Vite’s modern development tooling
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React.js 19** – Front-end library
+- **Vite** – Lightning-fast development server and bundler
+- **Tailwind CSS + daisyUI** – Utility-first styling and UI components
+- **React Router v7** – Page routing and navigation
+- **SweetAlert2** – Alert modals
+- **Firebase (optional)** – For future use: hosting, auth, or database
+- **ESLint** – Code quality and consistency
+
+## 📁 Project Structure
+

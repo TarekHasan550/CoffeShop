@@ -1,13 +1,12 @@
-import React from 'react'
 import { createBrowserRouter, RouterProvider, } from "react-router";
-import ErrorPage from "../pages/ErrorPage";
 import Layout from '../layouts/Layout';
-import Home from '../pages/Home';
 import CoffeDetails from '../pages/CoffeDetails';
+import ErrorPage from "../pages/ErrorPage";
+import Home from '../pages/Home';
 import NewCoffe from '../pages/NewCoffe';
-import UpdateCoffe from '../pages/UpdateCoffeDetails';
-import Login from '../pages/Login';
+import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import UpdateCoffe from '../pages/UpdateCoffeDetails';
 
 
 export default function Router() {
@@ -19,12 +18,12 @@ export default function Router() {
       children: [
         {
           index: true,
-          loader: () => fetch(`http://localhost:3000/coffes`),
+          loader: () => fetch(`https://coffe-shop-server-fawn.vercel.app/coffes`),
           Component: Home
         },
         {
           path: 'coffeDetails/:id',
-          loader: ({ params }) => fetch(`http://localhost:3000/coffes/${params.id}`),
+          loader: ({ params }) => fetch(`https://coffe-shop-server-fawn.vercel.app/coffes/${params.id}`),
           Component: CoffeDetails,
         },
         {
@@ -33,12 +32,12 @@ export default function Router() {
         },
         {
           path: "updateCoffe/:id",
-          loader: ({ params }) => fetch(`http://localhost:3000/coffes/${params.id}`),
+          loader: ({ params }) => fetch(`https://coffe-shop-server-fawn.vercel.app/coffes/${params.id}`),
           Component: UpdateCoffe
         },
         {
-          path: "/login",
-          Component: Login
+          path: "/signin",
+          Component: SignIn
         },
         {
           path: "/signup",

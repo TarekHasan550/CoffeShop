@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Link } from 'react-router'
 import Swal from 'sweetalert2'
@@ -13,7 +12,7 @@ export default function NewCoffe() {
     console.log(newCoffe);
 
     // send data to server
-    fetch(`http://localhost:3000/Coffes`, {
+    fetch(`https://coffe-shop-server-fawn.vercel.app/Coffes`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
